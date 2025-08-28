@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada de Equipamentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            text-align: center;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Entrada de Equipamentos</h1>
+    <div class="form-container">
+        <form action="/entrada" method="POST">
+            <label for="numero_equipamento">Número do Equipamento:</label>
+            <input type="text" id="numero_equipamento" name="numero_equipamento" required>
+
+            <label for="numero_chamado">Número do Chamado:</label>
+            <input type="text" id="numero_chamado" name="numero_chamado" required>
+
+            <label for="nome_tecnico">Nome do Técnico:</label>
+            <input type="text" id="nome_tecnico" name="nome_tecnico" required>
+
+            <label for="defeito">Defeito do Equipamento:</label>
+            <textarea id="defeito" name="defeito" rows="4" required></textarea>
+
+            <label for="formatacao">Necessita Formatação?</label>
+            <select id="formatacao" name="formatacao" required>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+
+            <label for="backup">Necessita Backup?</label>
+            <select id="backup" name="backup" required>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+
+            <button type="submit">Cadastrar Equipamento</button>
+        </form>
+        <a href="/" class="back-btn">Voltar para a Página Principal</a>
+    </div>
+</body>
+</html>

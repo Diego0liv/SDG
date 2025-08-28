@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Entrada de Equipamentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            text-align: center;
+        }
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-container select, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #d32f2f;
+        }
+        .report-container {
+            margin-top: 30px;
+        }
+        .equipamento-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .equipamento-table th, .equipamento-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .equipamento-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Entrada de Equipamentos</h1>
+    <div class="form-container">
+        <form action="/relatorio_entrada" method="POST">
+            <label for="filtro_periodo">Selecione o Período:</label>
+            <select id="filtro_periodo" name="filtro_periodo">
+                <option value="dia" {% if data_inicio == data_fim %}selected{% endif %}>Hoje</option>
+                <option value="semana" {% if data_inicio != data_fim %}selected{% endif %}>Semana</option>
+                <option value="mes" {% if data_inicio.month == hoje.month %}selected{% endif %}>Mês</option>
+            </select>
+
+            <button type="submit">Gerar Relatório</button>
+        </form>
+    </div>
+
+    <div class="report-container">
+        <h2>Relatório de Entrada - Período: 
+            {% if data_inicio and data_fim %}
+                {{ data_inicio }} a {{ data_fim }}
+            {% else %}
+                Todos
+            {% endif %}
+        </h2>
+        
+        {% if equipamentos %}
+            <table class="equipamento-table">
+                <thead>
+                    <tr>
+                        <th>Número do Equipamento</th>
+                        <th>Número do Chamado</th>
+                        <th>Técnico</th>
+                        <th>Defeito</th>
+                        <th>Data de Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipamento in equipamentos %}
+                    <tr>
+                        <td>{{ equipamento.numero_equipamento }}</td>
+                        <td>{{ equipamento.numero_chamado }}</td>
+                        <td>{{ equipamento.nome_tecnico }}</td>
+                        <td>{{ equipamento.defeito }}</td>
+                        <td>{{ equipamento.data_entrada }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum equipamento encontrado para o período selecionado.</p>
+        {% endif %}
+        
+        <div>
+            <a href="/relatorio_entrada/baixar" class="button">Baixar Relatório CSV</a>
+        </div>
+    </div>
+
+    <a href="/" class="back-btn">Voltar para a Página Principal</a>
+
+    <script>
+        function downloadRelatorio() {
+            alert("Função para download de relatório não implementada ainda.");
+        }
+    </script>
+</body>
+</html>

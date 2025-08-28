@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saída de Equipamentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            text-align: center;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-container input, .form-container textarea, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkbox-group label:hover {
+            background-color: #f1f1f1;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+        .checkbox-group label {
+        display: block;  /* Faz os labels ocuparem toda a largura e se empilharem */
+        margin-bottom: 10px;  /* Espaço entre cada checkbox */
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 10px;  /* Espaço à direita dos checkboxes */
+    }
+    </style>
+</head>
+<body>
+    <h1>Saída de Equipamentos</h1>
+    <div class="form-container">
+        <form action="/saida" method="POST">
+            <label for="numero_equipamento">Número do Equipamento:</label>
+            <input type="text" id="numero_equipamento" name="numero_equipamento" required>
+
+            <label for="numero_chamado">Número do Chamado:</label>
+            <input type="text" id="numero_chamado" name="numero_chamado" required>
+
+            <label for="nome_tecnico">Nome do Técnico Responsável:</label>
+            <input type="text" id="tecnico_responsavel" name="tecnico_responsavel" required>
+
+
+            <label for="destino">Para Onde Vai o Equipamento:</label>
+            <input type="text" id="destino" name="destino" required>
+
+            <label for="servicos">Serviços Realizados:</label>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="formataçao" name="servicos" value="Formatação">
+                    Formatação
+                </label>
+                <label>
+                    <input type="checkbox" id="backup" name="servicos" value="Backup">
+                    Backup
+                </label>
+                <label>
+                    <input type="checkbox" id="limpeza" name="servicos" value="Limpeza">
+                    Limpeza
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_pasta_termica" name="servicos" value="Troca de Pasta Térmica">
+                    Troca de Pasta Térmica
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_memoria" name="servicos" value="Troca de Memória">
+                    Troca de Memória
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_hd" name="servicos" value="Troca de HD">
+                    Troca de HD
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_processador" name="servicos" value="Troca de Processador">
+                    Troca de Processador
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_fonte" name="servicos" value="Troca de Fonte">
+                    Troca de Fonte
+                </label>
+                <label>
+                    <input type="checkbox" id="troca_cooler" name="servicos" value="Troca de Cooler">
+                    Troca de Cooler
+                </label>
+            </div>
+
+            <button type="submit">Cadastrar Saída de Equipamento</button>
+        </form>
+        <a href="/" class="back-btn">Voltar para a Página Principal</a>
+    </div>
+</body>
+</html>
